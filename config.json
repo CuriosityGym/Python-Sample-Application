@@ -1,11 +1,11 @@
 {
-    "access_token_url": "https://login.uber.com/oauth/token",
-    "authorize_url": "https://login.uber.com/oauth/authorize",
+    "access_token_url": "https://login.uber.com/oauth/v2/token"
+    "authorize_url": "https://login.uber.com/oauth/v2/authorize",
     "base_url": "https://login.uber.com/",
     "scopes": ["profile", "history_lite"],
     "name": "Sample app",
-    "base_uber_url": "https://sandbox-api.uber.com/v1/",
-    "base_uber_url_v1_1" : "https://sandbox-api.uber.com/v1.1/",
+    "base_uber_url": "https://sandbox-api.uber.com/v1.2/",
+    "base_uber_url_v1_1" : "https://sandbox-api.uber.com/v1.2/",
 	"base_uber_url_v1_2" : "https://sandbox-api.uber.com/v1.2/",
     "start_latitude": "18.936404",
     "start_longitude":  "72.832546",
