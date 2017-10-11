@@ -184,7 +184,7 @@ def productPrice():
     """
     url = config.get('base_uber_url_v1_2') + 'estimates/price'
     params = {
-        'product_id':config.get('chosenProduct')
+        'product_id':config.get('chosenProduct'),
         'start_latitude': config.get('start_latitude'),
         'start_longitude': config.get('start_longitude'),
         'end_latitude': config.get('end_latitude'),
