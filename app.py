@@ -158,8 +158,8 @@ def price():
     params = {
         'start_latitude': config.get('start_latitude'),
         'start_longitude': config.get('start_longitude'),
-        'end_latitude': config.get('end_latitude'),
-        'end_longitude': config.get('end_longitude'),
+##        'end_latitude': config.get('end_latitude'),
+##        'end_longitude': config.get('end_longitude'),
     }
 
     response = app.requests_session.get(
