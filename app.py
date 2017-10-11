@@ -166,8 +166,8 @@ def price():
     print generate_ride_headers(session.get('access_token'))
     response = app.requests_session.post(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
-        data=params
+        headers=json.dumps(generate_ride_headers(session.get('access_token'))),
+        data=json.dumps(params)
     )
 
     
