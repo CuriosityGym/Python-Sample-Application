@@ -169,8 +169,7 @@ def price():
         params=params,
     )
 
-    if response.status_code != 200:
-        return 'There was an error', response.status_code
+    
     return render_template(
         'results.html',
         endpoint='price',
