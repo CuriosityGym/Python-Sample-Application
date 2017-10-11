@@ -166,7 +166,7 @@ def price():
     response = app.requests_session.post(
         url,
         headers=generate_ride_headers(session.get('access_token')),
-        params=params,
+        data=params,
     )
 
     
