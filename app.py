@@ -148,36 +148,36 @@ def time():
     )
 
 
-@app.route('/price', methods=['GET'])
+##@app.route('/price', methods=['GET'])
+##def price():
+##    """Example call to the price estimates endpoint.
+##
+##    Returns the time estimates from the given lat/lng given below.
+##    """
+##    url = config.get('base_uber_url') + 'estimates/price'
+##    params = {
+##        'start_latitude': config.get('start_latitude'),
+##        'start_longitude': config.get('start_longitude'),
+##        'end_latitude': config.get('end_latitude'),
+##        'end_longitude': config.get('end_longitude'),
+##    }
+##
+##    response = app.requests_session.get(
+##        url,
+##        headers=generate_ride_headers(session.get('access_token')),
+##        params=params,
+##    )
+##
+##    if response.status_code != 200:
+##        return 'There was an error', response.status_code
+##    return render_template(
+##        'results.html',
+##        endpoint='price',
+##        data=response.text,
+##    )
+
+app.route('/price', methods=['GET'])
 def price():
-    """Example call to the price estimates endpoint.
-
-    Returns the time estimates from the given lat/lng given below.
-    """
-    url = config.get('base_uber_url') + 'estimates/price'
-    params = {
-        'start_latitude': config.get('start_latitude'),
-        'start_longitude': config.get('start_longitude'),
-        'end_latitude': config.get('end_latitude'),
-        'end_longitude': config.get('end_longitude'),
-    }
-
-    response = app.requests_session.get(
-        url,
-        headers=generate_ride_headers(session.get('access_token')),
-        params=params,
-    )
-
-    if response.status_code != 200:
-        return 'There was an error', response.status_code
-    return render_template(
-        'results.html',
-        endpoint='price',
-        data=response.text,
-    )
-
-app.route('/productPrice', methods=['GET'])
-def productPrice():
     """Example call to the price estimates endpoint.
 
     Returns the time estimates from the given lat/lng given below.
