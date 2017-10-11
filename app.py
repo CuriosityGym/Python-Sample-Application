@@ -34,8 +34,8 @@ def generate_oauth_service():
 def generate_ride_headers(token):
     """Generate the header object that is used to make api requests."""
     return {
-        'Authorization': 'bearer %s' % token,
-        'Content-Type': 'application/json',
+        "Authorization": "bearer %s" % token,
+        "Content-Type": "application/json",
     }
 
 
@@ -156,17 +156,17 @@ def price():
     """
     url = config.get('base_uber_url') + 'requests/estimate'
     params = {
-        'product_id': config.get('chosenProduct'),
-        'start_latitude': config.get('start_latitude'),
-        'start_longitude': config.get('start_longitude'),
-        'end_latitude': config.get('end_latitude'),
-        'end_longitude': config.get('end_longitude')
+        "product_id": config.get('chosenProduct'),
+        "start_latitude": config.get('start_latitude'),
+        "start_longitude": config.get('start_longitude'),
+        "end_latitude": config.get('end_latitude'),
+        "end_longitude": config.get('end_longitude')
     }
         
     response = app.requests_session.post(
         url,
         headers=generate_ride_headers(session.get('access_token')),
-        params=json.dumps(params)
+        params=params,
     )
 
     
