@@ -162,11 +162,11 @@ def price():
         'end_latitude': config.get('end_latitude'),
         'end_longitude': config.get('end_longitude')
     }
-
+        
     response = app.requests_session.post(
         url,
         headers=generate_ride_headers(session.get('access_token')),
-        params=params,
+        params=json.dumps(params)
     )
 
     
