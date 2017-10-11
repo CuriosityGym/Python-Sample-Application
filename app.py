@@ -163,7 +163,7 @@ def price():
         'end_longitude': config.get('end_longitude')
     }
 
-    response = app.requests_session.get(
+    response = app.requests_session.post(
         url,
         headers=generate_ride_headers(session.get('access_token')),
         params=params,
