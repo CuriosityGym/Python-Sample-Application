@@ -154,7 +154,7 @@ def price():
 
     Returns the time estimates from the given lat/lng given below.
     """
-    url = config.get('base_uber_url') + '/requests/estimate'
+    url = config.get('base_uber_url') + 'requests/estimate'
     params = {
         'product_id': config.get('chosenProduct'),
         'start_latitude': config.get('start_latitude'),
