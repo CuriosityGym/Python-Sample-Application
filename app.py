@@ -56,7 +56,7 @@ def getFareDetails():
     response = app.requests_session.post(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
-        headers=generate_ride_headers(getAccessToken())
+        headers=generate_ride_headers(getAccessToken()),
         data=json.dumps(params)
     )  
     
@@ -83,7 +83,7 @@ def reserveAnUber():
     response = app.requests_session.post(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
-        headers=generate_ride_headers(getAccessToken())
+        headers=generate_ride_headers(getAccessToken()),
         data=json.dumps(params)
     )
     return response.text
@@ -230,7 +230,7 @@ def products():
     response = app.requests_session.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
-        headers=generate_ride_headers(getAccessToken())
+        headers=generate_ride_headers(getAccessToken()),
         params=params,
     )
 
@@ -258,7 +258,7 @@ def time():
     response = app.requests_session.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
-        headers=generate_ride_headers(getAccessToken())
+        headers=generate_ride_headers(getAccessToken()),
         params=params,
     )
 
@@ -298,7 +298,7 @@ def history():
     response = app.requests_session.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
-        headers=generate_ride_headers(getAccessToken())
+        headers=generate_ride_headers(getAccessToken()),
         params=params,
     )
 
@@ -318,7 +318,7 @@ def me():
     response = app.requests_session.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
-        headers=generate_ride_headers(getAccessToken())
+        headers=generate_ride_headers(getAccessToken()),
     )
 
     if response.status_code != 200:
