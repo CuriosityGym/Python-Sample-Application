@@ -286,5 +286,5 @@ def get_redirect_uri(request):
     return 'https://{hostname}/submit'.format(hostname=parsed_url.hostname)
 
 if __name__ == '__main__':
-    app.debug = os.environ.get('FLASK_DEBUG', True)
+    app.debug = os.environ.get()
     app.run(port=7000)
