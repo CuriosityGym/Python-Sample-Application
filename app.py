@@ -101,7 +101,7 @@ def getRideStatus():
     
     #print params
     #print generate_ride_headers(session.get('access_token'))
-    response = app.requests_session.post(
+    response = app.requests_session.get(
         url,
         headers=generate_ride_headers(session.get('access_token')),
         
