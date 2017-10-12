@@ -190,7 +190,7 @@ def submit():
         f.write(json.dumps(response.json(), ensure_ascii=False))
         
     return redirect("/login")
-    )
+    
 
 
 @app.route('/demo', methods=['GET'])
