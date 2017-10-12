@@ -190,7 +190,7 @@ def submit():
     file = open('credentials.json','w')
     file.seek(0)                        # <- This is the missing piece
     file.truncate()  
-    file.write(json.dumps(response.text))
+    file.write(response.text)
     file.close()
     return "OK"
 
@@ -199,10 +199,11 @@ def submit():
 def viewCreds():
     f = open('credentials.json','r')
     message = f.read()
+    jsonObj=json.load(message)
     #print(message)
     f.close()
                
-    return json.dumps(message)
+    return print(jsonObj["access_token"])
     
     
 
