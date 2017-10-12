@@ -112,7 +112,8 @@ def bookUber():
 @app.route('/viewRideStatus', methods=['GET'])
 def viewRideStatus():
     rideStatusJson=getRideStatus()
-    return rideStatusJson["status"]
+    data=json.loads(rideStatusJson)
+    return data["status"]
 
 
 
@@ -121,7 +122,9 @@ def setRideStatus():
     #Get the Status of a Ride
     
     rideStatusJson=getRideStatus()
-    rideID=rideStatusJson["request_id"]
+    data=json.loads(rideStatusJson)     
+    rideID=data["request_id"]
+    
     url = config.get('base_uber_url') + '/sandbox/requests/' +rideID
     
     
