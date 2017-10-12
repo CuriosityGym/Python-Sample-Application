@@ -189,9 +189,7 @@ def submit():
     with io.open('credentials.json', 'w', encoding='utf-8') as f:
         f.write(json.dumps(response.json(), ensure_ascii=False))
         
-    return render_template(
-        'login.html',
-        token=response.json().get('access_token')
+    return redirect("/login")
     )
 
 
