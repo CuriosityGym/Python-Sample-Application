@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-import json
+import json,io
 import os
 from urlparse import urlparse
 
@@ -186,7 +186,13 @@ def submit():
     session['refresh_token'] = response.json().get('refresh_token')
     #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
     #print os.environ.get('UBER_REFRESH_TOKEN')
-    return response.json().get('refresh_token')
+    with io.open('credentials.json', 'w', encoding='utf-8') as f:
+        f.write(json.dumps(response.json(), ensure_ascii=False))
+        
+    return render_template(
+        'login.html',
+        token=response.json().get('access_token')
+    )
 
 
 @app.route('/demo', methods=['GET'])
