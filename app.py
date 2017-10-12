@@ -87,14 +87,6 @@ def reserveAnUber():
     return response.text
 
 
-@app.route('/bookUber', methods=['GET'])
-def bookUber():
-    cabStatus=reserveAnUber()
-    return cabStatus
-    
-
-
-@app.route('/getRideStatus', methods=['GET'])
 def getRideStatus():
     #Get the Status of a Ride
     url = config.get('base_uber_url') + 'requests/current'
@@ -105,9 +97,46 @@ def getRideStatus():
         url,
         headers=generate_ride_headers(session.get('access_token')),
         
-    )
+    )    
     return response.text
 
+
+
+@app.route('/bookUber', methods=['GET'])
+def bookUber():
+    cabStatus=reserveAnUber()
+    return cabStatus
+    
+
+
+@app.route('/viewRideStatus', methods=['GET'])
+def viewRideStatus():
+    rideStatusJson=getRideStatus()
+    return rideStatusJson["status"]
+
+
+
+@app.route('/setRideStatus/<string:newRideStatus>', methods=['GET'])
+def setRideStatus():
+    #Get the Status of a Ride
+    
+    rideStatusJson=getRideStatus()
+    rideID=rideStatusJson["request_id"]
+    url = config.get('base_uber_url') + '/sandbox/requests/' +rideID
+    
+    
+    params = {
+        {"status": newRideStatus}
+    }
+    #print params
+    #print generate_ride_headers(session.get('access_token'))
+    response = app.requests_session.put(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        data=json.dumps(params)
+    )    
+    return response.text
+    
 
     
 @app.route('/health', methods=['GET'])
