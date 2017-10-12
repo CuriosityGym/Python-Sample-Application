@@ -189,6 +189,14 @@ def submit():
     with io.open('credentials.json', 'w', encoding='utf-8') as f:
         f.write(json.dumps(response.json(), ensure_ascii=False))        
     return redirect('/login')
+
+
+@app.route('/viewCreds', methods=['GET'])
+def viewCreds():
+    with io.open('credentials.json', 'r', encoding='utf-8') as f:
+                
+        return f.read(json.dumps(response.json(), ensure_ascii=False))
+    
     
 
 
