@@ -112,8 +112,8 @@ def bookUber():
 @app.route('/viewRideStatus', methods=['GET'])
 def viewRideStatus():
     rideStatusJson=getRideStatus()
-    data=json.loads(rideStatusJson)
-    return data["status"]
+    #data=json.loads(rideStatusJson)
+    return rideStatusJson
 
 
 
