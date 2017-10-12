@@ -127,7 +127,7 @@ def setRideStatus(newRideStatus):
     
     url = config.get('base_uber_url') + '/sandbox/requests/' +rideID
     
-    
+    print newRideStatus
     params = {
         {"status": newRideStatus}
     }
