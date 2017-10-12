@@ -203,7 +203,7 @@ def viewCreds():
     #print(message)
     f.close()
                
-    return print(jsonObj["access_token"])
+    return jsonObj["access_token"]
     
     
 
