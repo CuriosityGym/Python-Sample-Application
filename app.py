@@ -66,7 +66,25 @@ def bookCab():
     #Book an Uber based on a fare ID
     fareDetails=getFareDetails();
     data=json.loads(fareDetails)
-    return "fareID: "+ data["fare"]["fare_id"]
+    fareID=data["fare"]["fare_id"]
+    
+    url = config.get('base_uber_url') + 'requests'
+    params = {
+        'fare_id': fareID,
+        'product_id': '83941b0d-4be1-4979-a9c0-f0af5ee2b89b',
+        'start_latitude': config.get('start_latitude'),
+        'start_longitude': config.get('start_longitude'),
+        'end_latitude': config.get('end_latitude'),
+        'end_longitude': config.get('end_longitude')
+    }
+    #print params
+    #print generate_ride_headers(session.get('access_token'))
+    response = app.requests_session.post(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        data=json.dumps(params)
+    )
+    return response.text
 
 
 @app.route('/health', methods=['GET'])
