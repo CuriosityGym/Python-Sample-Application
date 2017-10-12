@@ -39,7 +39,7 @@ def generate_ride_headers(token):
     }
 
 def getFareDetails():
-"""Example call to the price estimates endpoint.
+    """Example call to the price estimates endpoint.
 
     Returns the time estimates from the given lat/lng given below.
     """
