@@ -187,9 +187,8 @@ def submit():
     #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
     #print os.environ.get('UBER_REFRESH_TOKEN')
     with io.open('credentials.json', 'w', encoding='utf-8') as f:
-        f.write(json.dumps(response.json(), ensure_ascii=False))
-        
-    return redirect("/login")
+        f.write(json.dumps(response.json(), ensure_ascii=False))        
+    return redirect('/login')
     
 
 
