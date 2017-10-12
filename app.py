@@ -126,8 +126,8 @@ def setRideStatus(rideStatus):
     rideID=data["request_id"]
     
     url = config.get('base_uber_url') + 'sandbox/requests/' +rideID
-    print url
-    print rideStatus
+    #print url
+    #print rideStatus
     params = {"status": rideStatus}
     
     #print params
@@ -184,7 +184,7 @@ def submit():
     )
     session['access_token'] = response.json().get('access_token')
     #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
-    print os.environ.get('UBER_REFRESH_TOKEN')
+    #print os.environ.get('UBER_REFRESH_TOKEN')
     return render_template(
         'success.html',
         token=response.json().get('refresh_token')
@@ -199,19 +199,19 @@ def demo():
 
 def generateAccessToken():
 
-     params = {
-        'client_secret': os.environ.get('UBER_CLIENT_SECRET'),
-        'client_id': os.environ.get('UBER_CLIENT_ID'),
-        'grant_type': 'refresh_token',
-        'refresh_token':os.environ.get('UBER_REFRESH_TOKEN')
+    params = {
+    'client_secret': os.environ.get('UBER_CLIENT_SECRET'),
+    'client_id': os.environ.get('UBER_CLIENT_ID'),
+    'grant_type': 'refresh_token',
+    'refresh_token':os.environ.get('UBER_REFRESH_TOKEN')
     }
 
-     response = app.requests_session.post(
-        config.get('access_token_url'),
-        json.dumps(params)
+    response = app.requests_session.post(
+    config.get('access_token_url'),
+    json.dumps(params)
     )
-    
-    
+
+
     return response.text
     
 
