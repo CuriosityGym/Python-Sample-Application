@@ -45,7 +45,7 @@ def getFareDetails():
     """
     url = config.get('base_uber_url') + 'requests/estimate'
     params = {
-        'product_id': '83941b0d-4be1-4979-a9c0-f0af5ee2b89b',
+        'product_id': os.environ.get('UBER_DEFAULT_PRODUCT_ID'),
         'start_latitude': config.get('start_latitude'),
         'start_longitude': config.get('start_longitude'),
         'end_latitude': config.get('end_latitude'),
@@ -71,7 +71,7 @@ def reserveAnUber():
     url = config.get('base_uber_url') + 'requests'
     params = {
         'fare_id': fareID,
-        'product_id': '83941b0d-4be1-4979-a9c0-f0af5ee2b89b',
+        'product_id': os.environ.get('UBER_DEFAULT_PRODUCT_ID'),
         'start_latitude': config.get('start_latitude'),
         'start_longitude': config.get('start_longitude'),
         'end_latitude': config.get('end_latitude'),
@@ -183,10 +183,10 @@ def submit():
         data=params,
     )
     session['access_token'] = response.json().get('access_token')
-
+    os.environ['UBER_REFRESH_TOKEN']=response.json().get('refresh_token')
     return render_template(
         'success.html',
-        token=response.json().get('access_token')
+        token=response.json().get('refresh_token')
     )
 
 
