@@ -61,7 +61,7 @@ def getFareDetails():
     
     return response.text
 
-@app.route('/bookUber', methods=['GET'])
+
 def bookCab():
     #Book an Uber based on a fare ID
     fareDetails=getFareDetails();
@@ -87,6 +87,29 @@ def bookCab():
     return response.text
 
 
+@app.route('/bookUber', methods=['GET'])
+def bookCab():
+
+    return response.text
+    
+
+
+@app.route('/getRideStatus', methods=['GET'])
+def getRideStatus():
+    #Get the Status of a Ride
+    url = config.get('base_uber_url') + 'requests/current'
+    
+    #print params
+    #print generate_ride_headers(session.get('access_token'))
+    response = app.requests_session.post(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        
+    )
+    return response.text
+
+
+    
 @app.route('/health', methods=['GET'])
 def health():
     """Check the status of this application."""
