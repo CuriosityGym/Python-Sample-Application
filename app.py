@@ -193,9 +193,8 @@ def submit():
 
 @app.route('/viewCreds', methods=['GET'])
 def viewCreds():
-    with io.open('credentials.json', 'r', encoding='utf-8') as f:
-                
-        return f.read(json.dumps(response.json(), ensure_ascii=False))
+    with io.open('credentials.json', 'r', encoding='utf-8') as f:                
+        return json.dumps(f.readall(), ensure_ascii=False)
     
     
 
