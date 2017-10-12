@@ -38,6 +38,29 @@ def generate_ride_headers(token):
         "Content-Type": "application/json"
     }
 
+def getFareDetails():
+"""Example call to the price estimates endpoint.
+
+    Returns the time estimates from the given lat/lng given below.
+    """
+    url = config.get('base_uber_url') + 'requests/estimate'
+    params = {
+        'product_id': '83941b0d-4be1-4979-a9c0-f0af5ee2b89b',
+        'start_latitude': config.get('start_latitude'),
+        'start_longitude': config.get('start_longitude'),
+        'end_latitude': config.get('end_latitude'),
+        'end_longitude': config.get('end_longitude')
+    }
+    #print params
+    #print generate_ride_headers(session.get('access_token'))
+    response = app.requests_session.post(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        data=json.dumps(params)
+    )  
+    
+    return response.text
+
 
 @app.route('/health', methods=['GET'])
 def health():
@@ -150,32 +173,17 @@ def time():
 
 @app.route('/price', methods=['GET'])
 def price():
-    """Example call to the price estimates endpoint.
-
-    Returns the time estimates from the given lat/lng given below.
-    """
-    url = config.get('base_uber_url') + 'requests/estimate'
-    params = {
-        'product_id': '83941b0d-4be1-4979-a9c0-f0af5ee2b89b',
-        'start_latitude': config.get('start_latitude'),
-        'start_longitude': config.get('start_longitude'),
-        'end_latitude': config.get('end_latitude'),
-        'end_longitude': config.get('end_longitude')
-    }
-    print params
-    print generate_ride_headers(session.get('access_token'))
-    response = app.requests_session.post(
-        url,
-        headers=generate_ride_headers(session.get('access_token')),
-        data=json.dumps(params)
-    )
-
-    
+    fareDetails=getFareDetails()    
     return render_template(
         'results.html',
         endpoint='price',
-        data=response.text,
+        data=fareDetails,
     )
+    
+
+
+    
+    
 
 
 @app.route('/history', methods=['GET'])
