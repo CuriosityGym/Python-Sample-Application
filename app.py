@@ -125,8 +125,8 @@ def setRideStatus(rideStatus):
     data=json.loads(rideStatusJson)     
     rideID=data["request_id"]
     
-    url = config.get('base_uber_url') + '/sandbox/requests/' +rideID
-    
+    url = config.get('base_uber_url') + 'sandbox/requests/' +rideID
+    print(url)
     print rideStatus
     params = {"status": rideStatus}
     
