@@ -61,6 +61,13 @@ def getFareDetails():
     
     return response.text
 
+@app.route('/bookUber', methods=['GET'])
+def bookCab()
+    #Book an Uber based on a fare ID
+    fareDetails=getFareDetails();
+    fareID=json.loads(fareDetails)
+    return "fareID: "+data["fare"]["fare_id"])
+
 
 @app.route('/health', methods=['GET'])
 def health():
