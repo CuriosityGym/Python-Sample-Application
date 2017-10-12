@@ -113,7 +113,7 @@ def bookUber():
 def viewRideStatus():
     rideStatusJson=getRideStatus()
     data=json.loads(rideStatusJson)
-    return data["status"]
+    return data
 
 
 
