@@ -118,7 +118,7 @@ def viewRideStatus():
 
 
 @app.route('/setRideStatus/<string:newRideStatus>', methods=['GET'])
-def setRideStatus(newRideStatus):
+def setRideStatus(rideStatus):
     #Get the Status of a Ride
     
     rideStatusJson=getRideStatus()
@@ -127,9 +127,9 @@ def setRideStatus(newRideStatus):
     
     url = config.get('base_uber_url') + '/sandbox/requests/' +rideID
     
-    print newRideStatus
+    print rideStatus
     params = {
-        {"status": newRideStatus}
+        {"status": "accepted"}
     }
     #print params
     #print generate_ride_headers(session.get('access_token'))
