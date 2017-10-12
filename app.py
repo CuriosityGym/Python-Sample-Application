@@ -118,7 +118,7 @@ def viewRideStatus():
 
 
 @app.route('/setRideStatus/<string:newRideStatus>', methods=['GET'])
-def setRideStatus():
+def setRideStatus(newRideStatus):
     #Get the Status of a Ride
     
     rideStatusJson=getRideStatus()
