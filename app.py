@@ -190,7 +190,7 @@ def submit():
     file = open('credentials.json','w')
     file.seek(0)                        # <- This is the missing piece
     file.truncate()  
-    file.write(response.text)
+    file.write(json.dumps(response.text))
     file.close()
     return "OK"
 
