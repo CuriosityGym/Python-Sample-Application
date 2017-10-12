@@ -128,9 +128,8 @@ def setRideStatus(rideStatus):
     url = config.get('base_uber_url') + '/sandbox/requests/' +rideID
     
     print rideStatus
-    params = {
-        {"status": "accepted"}
-    }
+    params = {"status": rideStatus}
+    
     #print params
     #print generate_ride_headers(session.get('access_token'))
     response = app.requests_session.put(
