@@ -187,7 +187,7 @@ def submit():
     #print os.environ.get('UBER_REFRESH_TOKEN')
     return render_template(
         'success.html',
-        token=response.json().get('refresh_token')
+        token="ABCD"
     )
 
 
