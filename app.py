@@ -186,6 +186,7 @@ def submit():
     session['refresh_token'] = response.json().get('refresh_token')
     #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
     #print os.environ.get('UBER_REFRESH_TOKEN')
+    file=open("credentials.json","w").close() #erase all contents of the file
     file = open('credentials.json','w')
     file.write(response.text)
     file.close()
