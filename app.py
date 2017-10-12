@@ -55,7 +55,8 @@ def getFareDetails():
     #print generate_ride_headers(session.get('access_token'))
     response = app.requests_session.post(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken())
         data=json.dumps(params)
     )  
     
@@ -81,7 +82,8 @@ def reserveAnUber():
     #print generate_ride_headers(session.get('access_token'))
     response = app.requests_session.post(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken())
         data=json.dumps(params)
     )
     return response.text
@@ -95,7 +97,8 @@ def getRideStatus():
     #print generate_ride_headers(session.get('access_token'))
     response = app.requests_session.get(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token'))
+        headers=generate_ride_headers(getAccessToken()),
         
     )    
     return response.text
@@ -134,7 +137,8 @@ def setRideStatus(rideStatus):
     #print generate_ride_headers(session.get('access_token'))
     response = app.requests_session.put(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken()),
         data=json.dumps(params)
     )    
     return response.text
@@ -192,14 +196,12 @@ def submit():
     return "OK"
 
 
-@app.route('/viewCreds', methods=['GET'])
-def viewCreds():
+
+def getAccessToken():
     f = open('credentials.json','r')
-    message = f.read()    
-    #print(message)
+    message = f.read()       
     jsonObj=json.loads(message)
-    f.close()    
-               
+    f.close()              
     return jsonObj["access_token"]
     
     
@@ -211,28 +213,6 @@ def demo():
     return render_template('demo.html', token=session.get('refresh_token'))
 
 
-def generateAccessToken():
-
-    params = {
-    'client_secret': os.environ.get('UBER_CLIENT_SECRET'),
-    'client_id': os.environ.get('UBER_CLIENT_ID'),
-    'grant_type': 'refresh_token',
-    'refresh_token':os.environ.get('UBER_REFRESH_TOKEN')
-    }
-
-    response = app.requests_session.post(
-    config.get('access_token_url'),
-    json.dumps(params)
-    )
-
-
-    return response.text
-    
-
-
-@app.route('/viewAccessToken', methods=['GET'])
-def viewAccessToken():
-    return generateAccessToken()
 
 
 @app.route('/products', methods=['GET'])
@@ -249,7 +229,8 @@ def products():
 
     response = app.requests_session.get(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken())
         params=params,
     )
 
@@ -276,7 +257,8 @@ def time():
 
     response = app.requests_session.get(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken())
         params=params,
     )
 
@@ -315,7 +297,8 @@ def history():
 
     response = app.requests_session.get(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken())
         params=params,
     )
 
@@ -334,7 +317,8 @@ def me():
     url = config.get('base_uber_url') + 'me'
     response = app.requests_session.get(
         url,
-        headers=generate_ride_headers(session.get('access_token')),
+        #headers=generate_ride_headers(session.get('access_token')),
+        headers=generate_ride_headers(getAccessToken())
     )
 
     if response.status_code != 200:
