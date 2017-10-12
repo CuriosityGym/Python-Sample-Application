@@ -183,7 +183,7 @@ def submit():
         data=params,
     )
     session['access_token'] = response.json().get('access_token')
-    os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
+    #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
     print os.environ.get('UBER_REFRESH_TOKEN')
     return render_template(
         'success.html',
@@ -195,6 +195,30 @@ def submit():
 def demo():
     """Demo.html is a template that calls the other routes in this example."""
     return render_template('demo.html', token=session.get('access_token'))
+
+
+def generateAccessToken():
+
+     params = {
+        'client_secret': os.environ.get('UBER_CLIENT_SECRET'),
+        'client_id': os.environ.get('UBER_CLIENT_ID'),
+        'grant_type': 'refresh_token',
+        'refresh_token':os.environ.get('UBER_REFRESH_TOKEN')
+    }
+
+     response = app.requests_session.post(
+        config.get('access_token_url'),
+        json.dumps(params)
+    )
+    
+    
+    return response.text
+    
+
+
+@app.route('/viewAccessToken', methods=['GET'])
+def viewAccessToken():
+    return generateAccessToken()
 
 
 @app.route('/products', methods=['GET'])
