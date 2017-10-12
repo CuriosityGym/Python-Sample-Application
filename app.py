@@ -62,7 +62,7 @@ def getFareDetails():
     return response.text
 
 
-def bookCab():
+def reserveAnUber():
     #Book an Uber based on a fare ID
     fareDetails=getFareDetails();
     data=json.loads(fareDetails)
@@ -88,8 +88,8 @@ def bookCab():
 
 
 @app.route('/bookUber', methods=['GET'])
-def bookCab():
-    cabStatus=bookCab()
+def bookUber():
+    cabStatus=reserveAnUber()
     return cabStatus
     
 
