@@ -198,10 +198,10 @@ def submit():
 @app.route('/viewCreds', methods=['GET'])
 def viewCreds():
     f = open('credentials.json','r')
-    message = f.read()
-    jsonObj=json.load(message)
+    message = f.read()    
     #print(message)
-    f.close()
+    jsonObj=json.load(f)
+    f.close()    
                
     return jsonObj["access_token"]
     
