@@ -186,9 +186,10 @@ def submit():
     session['refresh_token'] = response.json().get('refresh_token')
     #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
     #print os.environ.get('UBER_REFRESH_TOKEN')
-    with io.open('credentials.json', 'w', encoding='utf-8') as f:
-        f.write(json.dumps(response.json(), ensure_ascii=False))        
-    return redirect('/login')
+    file = open('credentials.json','r')
+    file.write(response.text)
+    file.close()
+    return "OK"
 
 
 @app.route('/viewCreds', methods=['GET'])
