@@ -89,8 +89,8 @@ def bookCab():
 
 @app.route('/bookUber', methods=['GET'])
 def bookCab():
-
-    return response.text
+    cabStatus=bookCab()
+    return cabStatus
     
 
 
