@@ -197,7 +197,7 @@ def viewCreds():
     f = open('credentials.json','r')
     message = f.read()    
     #print(message)
-    jsonObj=json.load(f)
+    jsonObj=json.loads(message)
     f.close()    
                
     return jsonObj["access_token"]
