@@ -117,7 +117,7 @@ def viewRideStatus():
 
 
 
-@app.route('/setRideStatus/<string:newRideStatus>', methods=['GET'])
+@app.route('/setRideStatus/<string:rideStatus>', methods=['GET'])
 def setRideStatus(rideStatus):
     #Get the Status of a Ride
     
