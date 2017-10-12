@@ -62,7 +62,7 @@ def getFareDetails():
     return response.text
 
 @app.route('/bookUber', methods=['GET'])
-def bookCab()
+def bookCab():
     #Book an Uber based on a fare ID
     fareDetails=getFareDetails();
     fareID=json.loads(fareDetails)
