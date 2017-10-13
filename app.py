@@ -224,7 +224,7 @@ def hasTokenExpired():
     fileModifiedOn=modification_date('credentials.json')
     expiryDuration=getJSONValueFromCredentials("expires_in")
     expiryTime=float(fileModifiedOn)+float(expiryDuration)
-    return expiryTime
+    return str(expiryTime)
     
 
 @app.route('/demo', methods=['GET'])
