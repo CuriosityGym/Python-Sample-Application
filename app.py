@@ -226,11 +226,11 @@ def hasTokenExpired():
     expiryDuration=getJSONValueFromCredentials("expires_in")
     expiryTime=float(fileModifiedOn)+float(expiryDuration)
     currentTime=datetime.datetime.utcnow().strftime("%s")
-##    if(currentTime-expiryTime>tokenRefreshThreshold):
-##        return "No"
-##    else:
-##        return "Yes"
-    return str(currentTime)
+    if(currentTime-expiryTime>tokenRefreshThreshold):
+        return "No"
+    else:
+        return "Yes"
+    #return str(currentTime)
     
 
 @app.route('/demo', methods=['GET'])
