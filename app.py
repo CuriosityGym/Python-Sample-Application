@@ -4,6 +4,9 @@ import json,io
 import os
 from urlparse import urlparse
 
+
+import datetime
+
 from flask import Flask, render_template, request, redirect, session
 from flask_sslify import SSLify
 from rauth import OAuth2Service
@@ -204,8 +207,13 @@ def getAccessToken():
     f.close()              
     return jsonObj["access_token"]
     
-    
+def modification_date(filename):
+    t = os.path.getmtime(filename)
+    return datetime.datetime.fromtimestamp(t)    
 
+@app.route('/lastModified', methods=['GET'])
+def lastModified():
+    return modification_date('credentials.json') 
 
 @app.route('/demo', methods=['GET'])
 def demo():
