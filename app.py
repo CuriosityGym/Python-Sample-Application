@@ -199,21 +199,33 @@ def submit():
     return "OK"
 
 
-
-def getAccessToken():
+def getJSONValueFromCredentials(myKey):
     f = open('credentials.json','r')
     message = f.read()       
     jsonObj=json.loads(message)
     f.close()              
-    return jsonObj["access_token"]
+    return jsonObj[myKey]
+
+def getAccessToken():
+    return getJSONValueFromCredentials("access_token")
     
 def modification_date(filename):
     t = os.path.getmtime(filename)
-    return str(t)    
+    return t
 
 @app.route('/lastModified', methods=['GET'])
 def lastModified():
-    return modification_date('credentials.json') 
+    return str(modification_date('credentials.json'))
+
+
+
+@app.route('/hasTokenExpired', methods=['GET'])
+def hasTokenExpired():
+    fileModifiedOn=modification_date('credentials.json')
+    expiryDuration=getJSONValueFromCredentials("expires_in")
+    expiryTime=fileModifiedOn+float(expiryDuration)
+    return expiryTime
+    
 
 @app.route('/demo', methods=['GET'])
 def demo():
