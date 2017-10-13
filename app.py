@@ -225,7 +225,7 @@ def hasTokenExpired():
     fileModifiedOn=modification_date('credentials.json')
     expiryDuration=getJSONValueFromCredentials("expires_in")
     expiryTime=float(fileModifiedOn)+float(expiryDuration)
-    currentTime=datetime.datetime.utcnow()
+    currentTime=datetime.datetime.utcnow().total_seconds()
 ##    if(currentTime-expiryTime>tokenRefreshThreshold):
 ##        return "No"
 ##    else:
