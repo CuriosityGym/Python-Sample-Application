@@ -13,7 +13,7 @@ from rauth import OAuth2Service
 import requests
 
 app = Flask(__name__, static_folder='static', static_url_path='')
-app.requests_session = requests.Session()
+#app.requests_session = requests.Session()
 app.secret_key = os.urandom(24)
 
 sslify = SSLify(app)
@@ -57,7 +57,7 @@ def getFareDetails():
     }
     #print params
     #print generate_ride_headers(session.get('access_token'))
-    response = app.requests_session.post(
+    response = requests.post(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
@@ -84,7 +84,7 @@ def reserveAnUber():
     }
     #print params
     #print generate_ride_headers(session.get('access_token'))
-    response = app.requests_session.post(
+    response = requests.post(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
@@ -99,7 +99,7 @@ def getRideStatus():
     
     #print params
     #print generate_ride_headers(session.get('access_token'))
-    response = app.requests_session.get(
+    response = requests.get(
         url,
         #headers=generate_ride_headers(session.get('access_token'))
         headers=generate_ride_headers(getAccessToken()),
@@ -139,7 +139,7 @@ def setRideStatus(rideStatus):
     
     #print params
     #print generate_ride_headers(session.get('access_token'))
-    response = app.requests_session.put(
+    response = requests.put(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
@@ -182,7 +182,7 @@ def submit():
         'code': request.args.get('code'),
         'grant_type': 'authorization_code'
     }
-    response = app.requests_session.post(
+    response = requests.post(
         config.get('access_token_url'),
         auth=(
             os.environ.get('UBER_CLIENT_ID'),
@@ -190,8 +190,8 @@ def submit():
         ),
         data=params,
     )
-    session['access_token'] = response.json().get('access_token')
-    session['refresh_token'] = response.json().get('refresh_token')
+    #session['access_token'] = response.json().get('access_token')
+    #session['refresh_token'] = response.json().get('refresh_token')
     #os.putenv('UBER_REFRESH_TOKEN',response.json().get('refresh_token'))
     #print os.environ.get('UBER_REFRESH_TOKEN')
     #file=open("credentials.json","w").close() #erase all contents of the file
@@ -214,10 +214,10 @@ def modification_date(filename):
     t = os.path.getmtime(filename)
     return t
 
-@app.route('/lastModified', methods=['GET'])
-def lastModified():
-    return str(modification_date('credentials.json'))
-
+##@app.route('/lastModified', methods=['GET'])
+##def lastModified():
+##    return str(modification_date('credentials.json'))
+##
 
 
 @app.route('/hasTokenExpired', methods=['GET'])
@@ -253,7 +253,7 @@ def products():
         'longitude': config.get('start_longitude'),
     }
 
-    response = app.requests_session.get(
+    response = requests.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
@@ -281,7 +281,7 @@ def time():
         'start_longitude': config.get('start_longitude'),
     }
 
-    response = app.requests_session.get(
+    response = requests.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
@@ -321,7 +321,7 @@ def history():
         'limit': 5,
     }
 
-    response = app.requests_session.get(
+    response = requests.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
@@ -341,7 +341,7 @@ def history():
 def me():
     """Return user information including name, picture and email."""
     url = config.get('base_uber_url') + 'me'
-    response = app.requests_session.get(
+    response = requests.get(
         url,
         #headers=generate_ride_headers(session.get('access_token')),
         headers=generate_ride_headers(getAccessToken()),
