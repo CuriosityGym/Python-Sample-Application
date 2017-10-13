@@ -209,7 +209,7 @@ def getAccessToken():
     
 def modification_date(filename):
     t = os.path.getmtime(filename)
-    return t    
+    return str(t)    
 
 @app.route('/lastModified', methods=['GET'])
 def lastModified():
