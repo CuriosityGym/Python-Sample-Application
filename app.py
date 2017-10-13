@@ -17,6 +17,7 @@ app.requests_session = requests.Session()
 app.secret_key = os.urandom(24)
 
 sslify = SSLify(app)
+tokenRefreshThreshold=864000 #Refresh token is token about to expire in 10 days, 10*24*3600 seconds
 
 with open('config.json') as f:
     config = json.load(f)
@@ -224,7 +225,12 @@ def hasTokenExpired():
     fileModifiedOn=modification_date('credentials.json')
     expiryDuration=getJSONValueFromCredentials("expires_in")
     expiryTime=float(fileModifiedOn)+float(expiryDuration)
-    return str(expiryTime)
+    currentTime=datetime.datetime.utcnow()
+##    if(currentTime-expiryTime>tokenRefreshThreshold):
+##        return "No"
+##    else:
+##        return "Yes"
+    return str(currentTime)
     
 
 @app.route('/demo', methods=['GET'])
