@@ -223,7 +223,7 @@ def lastModified():
 def hasTokenExpired():
     fileModifiedOn=modification_date('credentials.json')
     expiryDuration=getJSONValueFromCredentials("expires_in")
-    expiryTime=fileModifiedOn+float(expiryDuration)
+    expiryTime=float(fileModifiedOn)+float(expiryDuration)
     return expiryTime
     
 
