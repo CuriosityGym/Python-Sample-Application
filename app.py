@@ -226,10 +226,10 @@ def hasTokenExpired():
     expiryDuration=getJSONValueFromCredentials("expires_in")
     expiryTime=float(fileModifiedOn)+float(expiryDuration)
     currentTime=float(datetime.datetime.utcnow().strftime("%s"))
-    if(currentTime-expiryTime>tokenRefreshThreshold):
-        return "No"
-    else:
+    if(expiryTime-currentTime<tokenRefreshThreshold):
         return "Yes"
+    else:
+        return "No"
     #return str(currentTime)
     
 
