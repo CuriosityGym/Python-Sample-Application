@@ -197,7 +197,7 @@ def submit():
     #file=open("credentials.json","w").close() #erase all contents of the file
     with open('credentials.json', 'w') as outfile:  
         json.dump(response.json(), outfile)
-    return "OK"
+    return response.json()
 
 
 def getJSONValueFromCredentials(myKey):
