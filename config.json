@@ -2,7 +2,7 @@
     "access_token_url": "https://login.uber.com/oauth/v2/token",
     "authorize_url": "https://login.uber.com/oauth/v2/authorize",
     "base_url": "https://login.uber.com/",
-    "scopes": ["profile", "history_lite"],
+    "scopes": ["profile", "history_lite","request"],
     "name": "Sample app",
     "base_uber_url": "https://sandbox-api.uber.com/v1.2/",
     "base_uber_url_v1_1" : "https://sandbox-api.uber.com/v1.2/",
