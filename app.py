@@ -208,7 +208,7 @@ def getJSONValueFromCredentials(myKey):
     return jsonObj[myKey]
 
 def getAccessToken():
-    return os.environ.get('UBER_PERSONAL_ACCESS_TOKEN')
+    return getJSONValueFromCredentials("access_token")
     
 def modification_date(filename):
     t = os.path.getmtime(filename)
