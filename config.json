@@ -3,7 +3,7 @@
     "authorize_url": "https://login.uber.com/oauth/v2/authorize",
     "base_url": "https://login.uber.com/",
     "scopes": ["profile", "history_lite","request"],
-    "name": "Sample app",
+    "name": "BarButton",
     "base_uber_url": "https://sandbox-api.uber.com/v1.2/",
     "base_uber_url_v1_1" : "https://sandbox-api.uber.com/v1.2/",
 	"base_uber_url_v1_2" : "https://sandbox-api.uber.com/v1.2/",
